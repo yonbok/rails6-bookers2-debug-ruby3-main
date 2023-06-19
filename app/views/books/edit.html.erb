@@ -3,8 +3,21 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>Editing Book</h1>
   		<%= render 'layouts/errors', obj: @user %>
-  		<%= render 'form', book: @book %>
-  		<%= link_to 'Show', user_path %> |
+  		<%= form_with model: @book,local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :opinion %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Update Book", class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+  		<%= link_to 'Show', book_path(@book) %> |
   		<%= link_to 'Back', books_path, class: "back" %>
   </div>
 </div>
