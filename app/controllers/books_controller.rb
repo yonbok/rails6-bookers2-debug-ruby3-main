@@ -11,7 +11,6 @@ class BooksController < ApplicationController
     @book = Book.new
     @books = Book.all
      flash[:notice] = "Welcome! You have signed up successfully."
-    @user = current_user
   end
 
   def create
@@ -32,7 +31,6 @@ class BooksController < ApplicationController
     @user = @book.user
     if @user != current_user
       redirect_to books_path
-
     end
   end
 
