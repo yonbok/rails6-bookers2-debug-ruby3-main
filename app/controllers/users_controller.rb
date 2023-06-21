@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+     flash[:notice] = "Welcome! You have signed up successfully."
     @books = @user.books
     @book = Book.new
   end

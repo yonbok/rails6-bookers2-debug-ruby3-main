@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    @book_comment = BookComment.new
     @user = @book.user
     flash[:notice] = "You have created book successfully."
   end
