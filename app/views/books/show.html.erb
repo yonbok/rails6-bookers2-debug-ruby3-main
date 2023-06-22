@@ -27,7 +27,7 @@
               <% if @user == current_user %>
                 <%= link_to 'Destroy', book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
               <% end %>
-              <% if @book.favorited_by?(current_user) %>
+             <td> <% if @book.favorited_by?(current_user) %>
                <p>
                  <%= link_to book_favorites_path(@book), method: :delete do %>
                    ♥<%= @book.favorites.count %>いいね
@@ -40,6 +40,7 @@
                  <% end %>
                </p>
               <% end %>
+              </td>
               <td>
                 <p>コメント数：<%= @book.book_comments.count %></p>
               </td>
@@ -49,14 +50,16 @@
                 <!--<p>コメント数：<%#= @book.book_comments.count %></p>-->
                 <% @book.book_comments.each do |book_comment| %>
                   <%= link_to user_path(book_comment.user) do %>
-                    <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p><br>
+                    <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
                     <%= book_comment.user.name %>
                   <% end %>
+
                   <% if book_comment.user == current_user %>
-                    <%= link_to "destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete,class: "btn btn-sm btn-danger" %>
+                    <%= link_to "destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger" %>
                   <% end %>
+
                 <% end %>
-                </td>
+               </td>
               </tr>
               <tr>
                 <td>
