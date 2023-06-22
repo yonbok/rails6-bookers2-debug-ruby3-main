@@ -48,10 +48,12 @@
                 <td>
                 <!--<p>コメント数：<%#= @book.book_comments.count %></p>-->
                 <% @book.book_comments.each do |book_comment| %>
-                  <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p><br>
-                  <%= book_comment.user.name %>
+                  <%= link_to user_path(book_comment.user) do %>
+                    <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p><br>
+                    <%= book_comment.user.name %>
+                  <% end %>
                   <% if book_comment.user == current_user %>
-                    <%= link_to "destroy", book_book_comment_path(book_comment.book, book_comment), class: "btn btn-sm btn-danger" %>
+                    <%= link_to "destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete,class: "btn btn-sm btn-danger" %>
                   <% end %>
                 <% end %>
                 </td>
