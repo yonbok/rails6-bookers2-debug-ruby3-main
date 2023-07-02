@@ -1,18 +1,22 @@
 <% if users.exists? %>
   <% users.each do |user| %>
    <table>
-     <thead>
-       <tr>
-         <th>Follower Users</th>
-         <th></th>
-         <th></th>
-         <th></th>
-       </tr>
-     </thead>
+     <!--<thead>-->
+     <!--  <tr>-->
+     <!--    <th>Follower Users</th>-->
+     <!--    <th></th>-->
+     <!--    <th></th>-->
+     <!--    <th></th>-->
+     <!--  </tr>-->
+     <!--</thead>-->
      <tbody>
        <tr>
-         <td><%= image_tag user.get_profile_image(50,50) %></td>
-         <td><%= user.name %></td>
+         <td>
+           <%= link_to users_path do %>
+            <%= image_tag user.get_profile_image(50,50) %><br>
+            <%= user.name %>
+           <% end %>
+         </td>
          <td>フォロー数：<%= user.followings.count %></td>
          <td>フォロワー数：<%= user.followers.count %></td>
        </tr>
