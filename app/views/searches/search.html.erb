@@ -1,4 +1,4 @@
-<h2></h2>
+<h2>検索結果</h2>
 
 <table class="table table-hover table-inverse">
   <% if @range == "2" %>
@@ -12,15 +12,15 @@
   </thead>
 
   <tbody>
-    <% @books.each do |book| %>
+    <% @book.each do |book| %>
       <tr>
         <td>
-          <%= link_to user_path(book.user) do %>
-            <%= image_tag book.user.get_profile_image(100, 100) %>
+          <%= link_to user_path(user.id) do %>
+            <%= image_tag user.get_profile_image(50,50) %>
           <% end %>
         </td>
-        <td><%= link_to book.title, book_path(book.id) %></td>
-        <td><%= link_to book.body, book_path(book.id) %></td>
+        <td><%= link_to book.title,  book, class: "book_#{book.id}" %></td>
+        <td><%= book.body %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,14 +36,15 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @user.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image(50,50) %></td>
         <td><%= user.name %></td>
         <td>フォロー数：<%= user.followings.count %></td>
         <td>フォロワー数：<%= user.followers.count %></td>
-        <td><%= link_to 'Show', users_path(user.id) %></td>
+        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
   </tbody>
+ <% end %>
 </table>
