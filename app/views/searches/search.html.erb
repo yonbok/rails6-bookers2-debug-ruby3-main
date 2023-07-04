@@ -1,7 +1,7 @@
-<h2>検索結果</h2>
+<h2>Search results</h2>
 
 <table class="table table-hover table-inverse">
-  <% if @range == "2" %>
+  <% if @range == "Book" %>
   <thead>
     <tr>
       <th></th>
@@ -12,11 +12,11 @@
   </thead>
 
   <tbody>
-    <% @book.each do |book| %>
+    <% @books.each do |book| %>
       <tr>
         <td>
-          <%= link_to user_path(user.id) do %>
-            <%= image_tag user.get_profile_image(50,50) %>
+          <%= link_to user_path(book.user) do %>
+            <%= image_tag book.user.get_profile_image(50,50) %>
           <% end %>
         </td>
         <td><%= link_to book.title,  book, class: "book_#{book.id}" %></td>
@@ -36,7 +36,7 @@
   </thead>
 
   <tbody>
-    <% @user.each do |user| %>
+    <% @users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image(50,50) %></td>
         <td><%= user.name %></td>
