@@ -22,7 +22,7 @@
             <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', users_path(user.id) %></td>
+        <td><%= link_to 'Show', user_path(user.id) %></td>
       </tr>
     <% end %>
   </tbody>

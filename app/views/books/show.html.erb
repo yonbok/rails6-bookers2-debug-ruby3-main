@@ -24,9 +24,9 @@
           <td id="favorite_btn_<%= @book.id %>">
             <%= render "favorites/btn", book: @book %>
           </td>
-          <td>コメント数： <%= @book.book_comments.count %></td>
-
-
+          <td id="comment_counter">
+            <%= render "book_comments/counter", book: @book %>
+          </td>
             <td>
               <% if @user == current_user %>
                 <%= link_to 'Edit', edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
@@ -38,22 +38,12 @@
             </tr>
         </table>
 
-             <!--<td> <% if @book.favorited_by?(current_user) %>-->
-             <!--  <p>-->
-             <!--    <%= link_to book_favorites_path(@book), method: :delete do %>-->
-             <!--      ♥<%= @book.favorites.count %>いいね-->
-             <!--    <% end %>-->
-             <!--  </p>-->
-             <!--  <% else %>-->
-             <!--  <p>-->
-             <!--    <%= link_to book_favorites_path(@book), method: :post do %>-->
-             <!--      ♡<%= @book.favorites.count %>いいね-->
-             <!--    <% end %>-->
-             <!--  </p>-->
-             <!-- <% end %>-->
-             <!-- </td>-->
-             
-       <%= render "book_comments/index", book: @book, book_comments: @book_comments %>
+
+        <div id="comment_form">
+          <%= render "book_comments/form", book: @book %>
+        </div>
+
+        <%= render "book_comments/index", book: @book, book_comments: @book_comments %>
 
     </div>
   </div>
