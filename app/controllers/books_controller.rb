@@ -7,8 +7,8 @@ class BooksController < ApplicationController
     @user = @book.user
      flash[:notice] = "You have created book successfully."
     @book_detail = Book.find(params[:id])
-    unless BookCount.find_by(user_id: current_user.id,)
-
+    unless ReadCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+      current_user.read_counts.create(book_id: @book_detail.id)
     end
   end
 
