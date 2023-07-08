@@ -5,7 +5,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
     @user = @book.user
-    flash[:notice] = "You have created book successfully."
+     flash[:notice] = "You have created book successfully."
+    @book_detail = Book.find(params[:id])
+    unless BookCount.find_by(user_id: current_user.id,)
+
+    end
   end
 
   def index

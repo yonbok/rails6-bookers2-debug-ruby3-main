@@ -1,0 +1,21 @@
+<% @entries.each do |e| %>
+  <% if @myUserId != e.user.id %>
+    <h2><%= e.user.name %>さんとのチャット</h2>
+  <% end %>
+<% end %>
+<%= link_to "Back", users_path %>
+
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <% @myUserId == m.user.id %>
+      <p><%= m.user.name %></p>
+      <p><%= m.message %></p>
+    <% end %>
+  <% end %>
+
+<%= form_for @message do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力", siza: 50, class: "form-text_field" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.submit "投稿", class: "form-submit" %>
+<% end %>
+
